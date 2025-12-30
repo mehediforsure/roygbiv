@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROYGBIV | CORE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ensures the images fill the cover squares and look clean */
+        .release-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="bandcamp-player" src="" seamless></iframe>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">ROYGBIV</div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-column">
+                <div class="section-group">
+                    <div class="section-title">DB-01 // Stream / Download </div>
+                    <div class="news-list">
+                        <a href="https://push.fm/fl/os49vl89" target="_blank" class="news-item green">LATEST: ALBUM 'O' [OUT NOW]</a>
+                        <a href="https://open.spotify.com/artist/0g8u21EMl1J4OWt5xGQmOL?si=iAIZnWBAQqCmbx1OhF-HYg" target="_blank" class="news-item green">SPOTIFY: FULL DISCOGRAPHY</a>
+                        <a href="https://bandroygbiv.bandcamp.com/" target="_blank" class="news-item green">BANDCAMP: EXCLUSIVE MASTERS</a>
+                        <a href="https://music.apple.com/us/artist/roygbiv/983149275" target="_blank" class="news-item orange">APPLE MUSIC: HQ STREAM</a>
+                        <div class="news-item gray">PHYSICAL: VINYL / TAPE [LIMITED]</div>
+                    </div>
+                </div>
+
+                <div class="section-group">
+                    <div class="section-title">DB-02 // SOCIAL FREQUENCIES</div>
+                    <div class="news-list">
+                        <a href="https://www.instagram.com/roygbiv.wav/" target="_blank" class="news-item beige">INSTAGRAM</a>
+                        <a href="https://www.facebook.com/profile.php?id=61569870662863" target="_blank" class="news-item beige">FACEBOOK</a>
+                        <a href="https://bsky.app/profile/roygbivband.bsky.social" target="_blank" class="news-item yellow">BLUESKY</a>
+                        <a href="#" target="_blank" class="news-item purple">YOUTUBE</a>
+                    </div>
+                </div>
+
+                <div class="section-group">
+                    <div class="section-title">DB-03 // SYSTEM LOGS - ABOUT</div>
+                    <div class="news-list">
+                        <div class="news-item gray">BIO</div>
+                        <div class="news-item gray">ORIGIN: DHAKA, BANGLADESH</div>
+                        <div class="news-item gray">CONTACT: ROYGBIV.WAV@GMAIL.COM</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="releases-section">
+                    <div class="section-title">NEW RELEASES</div>
+                    <div class="releases-grid">
+                        <a href="https://push.fm/ps/gobacklilve" target="_blank" style="text-decoration:none; color:inherit;">
+                            <div class="release-item">
+                                <div class="release-cover cover-green">
+                                    <img src="images/goback.jpg" alt="Go Back">
+                                </div>
+                                <div class="release-info">ROYGBIV:<br>GO BACK (2025)</div>
+                            </div>
+                        </a>
+                        <a href="https://push.fm/fl/os49vl89" target="_blank" style="text-decoration:none; color:inherit;">
+                            <div class="release-item">
+                                <div class="release-cover cover-orange">
+                                    <img src="images/o.jpg" alt="Album O">
+                                </div>
+                                <div class="release-info">ROYGBIV:<br>ALBUM 'O' (2025)</div>
+                            </div>
+                        </a>
+                        <div class="release-item">
+                            <div class="release-cover cover-blue">
+                                <img src="images/born, living.jpg" alt="Born, Living">
+                            </div>
+                            <div class="release-info">ROYGBIV:<br>BORN, LIVING</div>
+                        </div>
+                        <a href="https://bandroygbiv.bandcamp.com/album/spooky-house" target="_blank" style="text-decoration:none; color:inherit;">
+                            <div class="release-item">
+                                <div class="release-cover cover-yellow">
+                                    <img src="images/spkhouse.jpg" alt="Spooky House">
+                                </div>
+                                <div class="release-info">ROYGBIV:<br>SPOOKY HOUSE</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="now-playing-section">
+                        <div class="now-playing-title">NOW PLAYING</div>
+                        <div id="track-status" class="now-playing-track">SYSTEM READY</div>
+                        <div class="controls">
+                            <button class="btn" onclick="controlMusic('stop')">Stop</button>
+                            <button class="btn" onclick="controlMusic('start')">Start</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mailing-section">
+                    <div class="section-title">JOIN THE MAILING LIST. SUPPLY E-MAIL:</div>
+                    <div class="mailing-content">
+                        <div class="mailing-input">
+                            <input type="email" placeholder="► ENTER EMAIL">
+                            <button>Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-label">ORIGIN</div>
+                    <div class="stat-value">Dhaka, Bangladesh</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Status</div>
+                    <div class="stat-value">Online</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">Links</div>
+                    <div class="stat-value">16</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-logo">roygbiv</div>
+            <div class="footer-center">
+                <div class="info-bar">LAST UPDATED: 2025.12.22 ► </div>
+                <div class="progress-bar">
+                    <div class="progress-segment"></div><div class="progress-segment"></div><div class="progress-segment"></div><div class="progress-segment"></div><div class="progress-segment"></div><div class="progress-segment"></div><div class="progress-segment"></div><div class="progress-segment"></div>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-link"><div class="footer-link-label">LOCATION</div><div>► DHAKA</div></div>
+                <div class="footer-link"><div class="footer-link-label">FORMAT</div><div>► 44.1kHz</div></div>
+                <div class="footer-link"><div class="footer-link-label">MEDIA</div><div>► ONLINE</div></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function controlMusic(action) {
+        const player = document.getElementById('bandcamp-player');
+        const statusText = document.getElementById('track-status');
+        const trackID = "2818042232";
+        const baseUrl = "https://bandcamp.com/EmbeddedPlayer/track=" + trackID + "/size=small/bgcol=333333/linkcol=a8c5b5/transparent=true/tracklist=false/autoplay=true/";
+
+        if (action === 'stop') {
+            player.src = "about:blank"; 
+            statusText.innerText = "SYSTEM PAUSED";
+            statusText.classList.remove('playing');
+        } else {
+            player.src = baseUrl;
+            statusText.innerText = "ROYGBIV: BORN, LIVING";
+            statusText.classList.add('playing');
+        }
+    }
+    </script>
+</body>
+</html>
