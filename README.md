@@ -1,1 +1,1 @@
-Roygbiv - a musical journey.
+ROYGBIV
