@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    
     <style>
         /* --- CORE SYSTEM DEFAULTS --- */
         * {
@@ -85,11 +87,13 @@
         .section-title { background: #000; color: #a8c5b5; padding: 6px 10px; font-size: 12px; font-family: 'VT323', monospace; }
 
         .news-item {
-            padding: 8px 10px; margin: 4px; font-size: 12px; font-weight: bold;
-            display: flex; justify-content: space-between; text-decoration: none; color: #000;
+            padding: 10px; margin: 4px; font-size: 12px; font-weight: bold;
+            display: flex; align-items: center; text-decoration: none; color: #000;
             transition: all 0.1s;
         }
+        .news-item i { margin-right: 12px; width: 18px; text-align: center; font-size: 14px; }
         .news-item:hover { background: #000 !important; color: #fff !important; transform: translateX(8px); }
+        .status-tag { margin-left: auto; font-size: 10px; opacity: 0.7; }
 
         /* COLORS */
         .beige { background: #c9ba9b; } .orange { background: #d47d4a; }
@@ -101,7 +105,7 @@
         .releases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; }
         .release-link { text-decoration: none; color: inherit; display: block; }
         .release-item { display: flex; gap: 8px; background: rgba(255,255,255,0.3); padding: 8px; border: 1px solid #000; }
-        .release-cover { width: 65px; height: 65px; border: 2px solid #000; }
+        .release-cover { width: 65px; height: 65px; border: 2px solid #000; overflow: hidden; }
         .release-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .cover-green { background: #7fb881; } .cover-blue { background: #5a7a9a; }
         .cover-orange { background: #d47d4a; } .cover-yellow { background: #c9b349; }
@@ -116,22 +120,8 @@
 
         /* --- FOOTER --- */
         .footer { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; }
-        
-        /* Updated Footer Logo style for Phonetic/Bengali symbols */
-        .footer-logo { 
-            font-size: 28px; 
-            color: #8a9a8a; 
-            font-family: Arial, sans-serif; 
-            opacity: 0.6; 
-            line-height: 1.1;
-        }
-        .pronunciation-guide {
-            font-size: 16px;
-            display: block;
-            margin-top: 4px;
-            letter-spacing: 0px;
-            color: #7a8a7a;
-        }
+        .footer-logo { font-size: 28px; color: #8a9a8a; font-family: Arial, sans-serif; opacity: 0.6; line-height: 1.1; }
+        .pronunciation-guide { font-size: 16px; display: block; margin-top: 4px; color: #7a8a7a; }
 
         .info-bar { background: #c9ba9b; padding: 6px 15px; font-size: 10px; font-weight: bold; border: 1px solid #000; }
         .progress-bar { width: 120px; height: 20px; background: #6a7a6a; border: 2px solid #000; display: flex; }
@@ -139,36 +129,18 @@
 
         .footer-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
         .footer-link { background: #6a7a5a; padding: 8px 12px; font-size: 9px; border: 1px solid #000; display: flex; flex-direction: column; text-decoration: none; color: #000; }
+        .footer-link i { font-size: 10px; margin-bottom: 4px; }
         .footer-link:hover { background: #a8c5b5; color: #000; }
         .footer-link-label { font-size: 7px; color: #000; opacity: 0.6; text-transform: uppercase; margin-bottom: 2px; }
 
         /* --- MOBILE REFINEMENTS --- */
         @media (max-width: 850px) {
             .header { flex-direction: column; padding: 15px; gap: 15px; }
-            .logo {
-                font-size: 80px;
-                letter-spacing: -2px;
-                transform: scaleY(1);
-                text-align: center;
-                width: 100%;
-                border: 4px solid #a8c5b5;
-                padding: 10px;
-                line-height: 1;
-            }
-
-            .main-content {
-                display: flex;
-                flex-direction: column-reverse;
-                padding: 10px;
-            }
-
+            .logo { font-size: 80px; letter-spacing: -2px; transform: scaleY(1); text-align: center; width: 100%; border: 4px solid #a8c5b5; padding: 10px; line-height: 1; }
+            .main-content { display: flex; flex-direction: column-reverse; padding: 10px; }
             .releases-grid { grid-template-columns: 1fr; }
-
-            .now-playing-section { margin: 5px; padding: 5px; }
-
             .footer { flex-direction: column; gap: 20px; text-align: center; }
             .footer-links { grid-template-columns: repeat(2, 1fr); width: 100%; }
-            .footer-logo { font-size: 26px; }
         }
     </style>
 </head>
@@ -183,32 +155,50 @@
                 <div class="section-group">
                     <div class="section-title">DB-01 // Stream / Download </div>
                     <div class="news-list">
-                        <a href="https://push.fm/fl/os49vl89" target="_blank" class="news-item green">LATEST Release: 'O'- An EP. [OUT NOW]</a>
-                        <a href="https://open.spotify.com/artist/0g8u21EMl1J4OWt5xGQmOL?si=iAIZnWBAQqCmbx1OhF-HYg" target="_blank" class="news-item green">SPOTIFY: FULL DISCOGRAPHY</a>
-                        <a href="https://bandroygbiv.bandcamp.com/" target="_blank" class="news-item green">BANDCAMP: EXCLUSIVE MASTERS</a>
-                        <a href="https://music.apple.com/us/artist/roygbiv/983149275" target="_blank" class="news-item orange">APPLE MUSIC: HQ STREAM</a>
-                        <div class="news-item gray">Other Streaming Platforms</div>
+                        <a href="https://push.fm/fl/os49vl89" target="_blank" class="news-item green">
+                            <i class="fas fa-compact-disc"></i> LATEST Release: 'O'- An EP. <span class="status-tag">[OUT NOW]</span>
+                        </a>
+                        <a href="#" target="_blank" class="news-item green">
+                            <i class="fab fa-spotify"></i> Spotify 
+                        </a>
+                        <a href="https://bandroygbiv.bandcamp.com/" target="_blank" class="news-item green">
+                            <i class="fab fa-bandcamp"></i> Bandcamp(Exclusive Releases)
+                        </a>
+                        <a href="https://music.apple.com/us/artist/roygbiv/983149275" target="_blank" class="news-item orange">
+                            <i class="fab fa-apple"></i> Apple Music 
+                        </a>
+                        <div class="news-item gray"><i class="fas fa-share-nodes"></i> Other Streaming Platforms</div>
                     </div>
                 </div>
 
                 <div class="section-group">
                     <div class="section-title">DB-02 // Social fREQUENCIES</div>
                     <div class="news-list">
-                        <a href="#" target="_blank" class="news-item purple">Youtube</a>
-                        <a href="https://www.instagram.com/roygbiv.wav/" target="_blank" class="news-item beige">Instagram</a>
-                        <a href="https://www.facebook.com/profile.php?id=61569870662863" target="_blank" class="news-item beige">Facebook</a>
-                        <a href="https://bsky.app/profile/roygbivband.bsky.social" target="_blank" class="news-item yellow">Bluesky</a>  
+                        <a href="#" target="_blank" class="news-item purple">
+                            <i class="fab fa-youtube"></i> Youtube
+                        </a>
+                        <a href="https://www.instagram.com/roygbiv.wav/" target="_blank" class="news-item beige">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61569870662863" target="_blank" class="news-item beige">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </a>
+                        <a href="https://bsky.app/profile/roygbivband.bsky.social" target="_blank" class="news-item yellow">
+                            <i class="fa-brands fa-bluesky"></i> Bluesky
+                        </a>  
                     </div>
                 </div>
 
                 <div class="section-group">
                     <div class="section-title">DB-03 // SysTem logs - About</div>
                     <div class="news-list">
-                        <div class="news-item gray">Bio</a>
-                        <a href="https://roygbivdhk.neocities.org" target="_blank" class="news-item gray">About ROYGBIV</a>
-                        <a href="https://roygbiv.neocities.org/contact" target="_blank" class="news-item gray">Contact</a> </div>
-                        <div class="news-item gray">Origin: Dhaka, Bangladesh</div>
-                        <div class="news-item gray">Contact: roygbiv.wav@gmail.com</div>
+                        <a href="https://roygbiv.neocities.org/about" target="_blank" class="news-item gray">
+                            <i class="fas fa-address-card"></i> About ROYGBIV
+                        </a>
+                        <a href="https://roygbiv.neocities.org/contact" target="_blank" class="news-item gray">
+                            <i class="fas fa-envelope"></i> Contact
+                        </a>
+                        <div class="news-item gray"><i class="fas fa-location-dot"></i> Origin: Dhaka, Bangladesh</div>
                     </div>
                 </div>
 
@@ -240,21 +230,21 @@
                                 <div class="release-cover cover-orange">
                                     <img src="images/o.jpg" alt="Album O">
                                 </div>
-                                <div class="release-info">ROYGBIV:<br>EP 'O' (2025)</div>
+                                <div class="release-info">ROYGBIV:<br>ALBUM 'O' (2025)</div>
                             </div>
                         </a>
                         <div class="release-item">
                             <div class="release-cover cover-blue">
                                 <img src="images/born, living.jpg" alt="Born, Living">
                             </div>
-                            <div class="release-info">ROYGBIV:<be>Single 'Born, Living' (2025)</div>
+                            <div class="release-info">ROYGBIV:<br>BORN, LIVING (2025)</div>
                         </div>
                         <a href="https://bandroygbiv.bandcamp.com/album/spooky-house" target="_blank" class="release-link">
                             <div class="release-item">
                                 <div class="release-cover cover-yellow">
                                     <img src="images/spkhouse.jpg" alt="Spooky House">
                                 </div>
-                                <div class="release-info">ROYGBIV:<br>EP 'Spooky House' (2024)</div>
+                                <div class="release-info">ROYGBIV:<br>SPOOKY HOUSE (2024)</div>
                             </div>
                         </a>
                     </div>
@@ -284,23 +274,22 @@
             </div>
             <div class="footer-links">
                 <a href="https://www.musicradar.com/news/short-history-of-electronic-music" target="_blank" class="footer-link">
-                    <div class="footer-link-label">Discovery</div><div>► Electronic Music Origin</div>
+                    <div class="footer-link-label"><i class="fas fa-bolt"></i> Discovery</div><div>► Electronic Music Origin</div>
                 </a>
                 <a href="https://mixmag.net/feature/deep-dive-south-asian-music-pakistan-india-sri-lanka-bangladesh-nepal" target="_blank" class="footer-link">
-                    <div class="footer-link-label">Discovery</div><div>► South Asian Scene</div>
+                    <div class="footer-link-label"><i class="fas fa-cloud-sun"></i> Discovery</div><div>► South Asian Scene</div>
                 </a>
-                <a href="https://open.spotify.com/playlist/5NNxpSzIqCNM3dNk7l8Z3h?si=bf4fdefeda184f46" target="_blank" class="footer-link">
-                    <div class="footer-link-label">Explore</div><div>► Music recommendation</div>
+                <a href="#" target="_blank" class="footer-link">
+                    <div class="footer-link-label"><i class="fab fa-spotify"></i> Explore</div><div>► Recommendations</div>
                 </a>
                 <a href="https://learningsynths.ableton.com/" target="_blank" class="footer-link">
-                    <div class="footer-link-label">Learn</div><div>► Learn Synthesizers</div>
+                    <div class="footer-link-label"><i class="fas fa-keyboard"></i> Learn</div><div>► Synthesizers</div>
                 </a>
                 <a href="https://rateyourmusic.com/genre/electronic/" target="_blank" class="footer-link">
-                    <div class="footer-link-label">Discovery</div><div>► RYM</div>
+                    <div class="footer-link-label"><i class="fas fa-record-vinyl"></i> Discovery</div><div>► RYM</div>
                 </a>
             </div>
         </div>
     </div>
 </body>
 </html>
-
