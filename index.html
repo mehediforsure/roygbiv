@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Ensures the images fill the cover squares and look clean */
         .release-cover img {
             width: 100%;
             height: 100%;
@@ -19,8 +18,6 @@
     </style>
 </head>
 <body>
-    <iframe id="bandcamp-player" src="" seamless></iframe>
-
     <div class="container">
         <div class="header">
             <div class="logo">ROYGBIV</div>
@@ -63,7 +60,7 @@
                 <div class="releases-section">
                     <div class="section-title">NEW RELEASES</div>
                     <div class="releases-grid">
-                        <a href="https://youtu.be/xwNa2o8q6Rc" target="_blank" style="text-decoration:none; color:inherit;">
+                        <a href="https://youtu.be/xwNa2o8q6Rc" target="_blank" class="release-link">
                             <div class="release-item">
                                 <div class="release-cover cover-green">
                                     <img src="images/firesideseance.jpg" alt="Fireside Seance">
@@ -71,7 +68,7 @@
                                 <div class="release-info">ROYGBIV:<br>Fireside Seance (2025)</div>
                             </div>
                         </a>
-                        <a href="https://youtu.be/xwNa2o8q6Rc" target="_blank" style="text-decoration:none; color:inherit;">
+                        <a href="https://youtu.be/xwNa2o8q6Rc" target="_blank" class="release-link">
                             <div class="release-item">
                                 <div class="release-cover cover-orange">
                                     <img src="images/o.jpg" alt="Album O">
@@ -85,7 +82,7 @@
                             </div>
                             <div class="release-info">ROYGBIV:<br>BORN, LIVING</div>
                         </div>
-                        <a href="https://bandroygbiv.bandcamp.com/album/spooky-house" target="_blank" style="text-decoration:none; color:inherit;">
+                        <a href="https://bandroygbiv.bandcamp.com/album/spooky-house" target="_blank" class="release-link">
                             <div class="release-item">
                                 <div class="release-cover cover-yellow">
                                     <img src="images/spkhouse.jpg" alt="Spooky House">
@@ -96,11 +93,11 @@
                     </div>
                     
                     <div class="now-playing-section">
-                        <div class="now-playing-title">NOW PLAYING</div>
-                        <div id="track-status" class="now-playing-track">Born, Living (2025)</div>
-                        <div class="controls">
-                            <button class="btn" onclick="controlMusic('stop')">Stop</button>
-                            <button class="btn" onclick="controlMusic('start')">Start</button>
+                        
+                        <div class="player-container">
+                            <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/track=1135268436/size=large/bgcol=333333/linkcol=4ec5ec/tracklist=false/artwork=small/transparent=true/" seamless>
+                                <a href="https://bandroygbiv.bandcamp.com/track/born-living">Born, Living by Roygbiv</a>
+                            </iframe>
                         </div>
                     </div>
                 </div>
@@ -108,26 +105,11 @@
                 <div class="mailing-section">
                     <div class="section-title">JOIN THE MAILING LIST. SUPPLY E-MAIL:</div>
                     <div class="mailing-content">
-                        <div class="mailing-input">
-                            <input type="email" placeholder="► ENTER EMAIL">
-                            <button>Subscribe</button>
-                        </div>
+                        <form action="https://formspree.io/f/xqekrklz" method="POST" class="mailing-input">
+                            <input type="email" name="email" placeholder="► ENTER EMAIL" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
                     </div>
-                </div>
-            </div>
-
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-label">ORIGIN</div>
-                    <div class="stat-value">Dhaka, Bangladesh</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">Status</div>
-                    <div class="stat-value">Online</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-label">Links</div>
-                    <div class="stat-value">16</div>
                 </div>
             </div>
         </div>
@@ -141,30 +123,23 @@
                 </div>
             </div>
             <div class="footer-links">
-                <div class="footer-link"><div class="footer-link-label">LOCATION</div><div>► DHAKA</div></div>
-                <div class="footer-link"><div class="footer-link-label">FORMAT</div><div>► 44.1kHz</div></div>
-                <div class="footer-link"><div class="footer-link-label">MEDIA</div><div>► ONLINE</div></div>
+                <a href="https://www.musicradar.com/news/short-history-of-electronic-music" target="_blank" class="footer-link">
+                    <div class="footer-link-label">DISCOVER</div><div>► Electronic Music Origin</div>
+                </a>
+                <a href="https://mixmag.net/feature/deep-dive-south-asian-music-pakistan-india-sri-lanka-bangladesh-nepal" target="_blank" class="footer-link">
+                    <div class="footer-link-label">Discover</div><div>► South Asian Scene</div>
+                </a>
+                <a href="https://open.spotify.com/playlist/5NNxpSzIqCNM3dNk7l8Z3h?si=bf4fdefeda184f46" target="_blank" class="footer-link">
+                    <div class="footer-link-label">Explore</div><div>► Music recommendation</div>
+                </a>
+                <a href="https://learningsynths.ableton.com/" target="_blank" class="footer-link">
+                    <div class="footer-link-label">LEARN</div><div>► Learn Synthesizers</div>
+                </a>
+                <a href="https://bandcamp.com/tag/experimental" target="_blank" class="footer-link">
+                    <div class="footer-link-label">FUTURE Music</div><div>► BEYOND GENRE</div>
+                </a>
             </div>
         </div>
     </div>
-
-    <script>
-    function controlMusic(action) {
-        const player = document.getElementById('bandcamp-player');
-        const statusText = document.getElementById('track-status');
-        const trackID = "2818042232";
-        const baseUrl = "https://bandcamp.com/EmbeddedPlayer/track=" + trackID + "/size=small/bgcol=333333/linkcol=a8c5b5/transparent=true/tracklist=false/autoplay=true/";
-
-        if (action === 'stop') {
-            player.src = "about:blank"; 
-            statusText.innerText = "SYSTEM PAUSED";
-            statusText.classList.remove('playing');
-        } else {
-            player.src = baseUrl;
-            statusText.innerText = "ROYGBIV: BORN, LIVING";
-            statusText.classList.add('playing');
-        }
-    }
-    </script>
 </body>
 </html>
