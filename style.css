@@ -16,7 +16,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- AUDIO ENGINE (Invisible but active) --- */
+/* --- AUDIO ENGINE --- */
 #bandcamp-player {
     position: absolute;
     width: 1px;
@@ -49,7 +49,7 @@ body::before {
     flex-direction: column;
 }
 
-/* --- HEADER & LOGO (Desktop) --- */
+/* --- HEADER --- */
 .header {
     display: flex;
     justify-content: space-between;
@@ -73,14 +73,6 @@ body::before {
     0% { opacity: 0.97; }
     100% { opacity: 1; }
 }
-
-.stats { display: flex; gap: 15px; }
-.stat-item {
-    background: #2a2a2a; padding: 10px 20px; border: 1px solid #000;
-    text-align: center; min-width: 80px;
-}
-.stat-label { font-size: 10px; color: #999; text-transform: uppercase; }
-.stat-value { font-size: 24px; color: #fff; font-family: 'VT323', monospace; }
 
 /* --- MAIN CONTENT LAYOUT --- */
 .main-content {
@@ -109,6 +101,7 @@ body::before {
 /* --- RELEASES & PLAYER --- */
 .releases-section { background: #a8c5b5; border: 2px solid #000; padding-bottom: 10px; }
 .releases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; }
+.release-link { text-decoration: none; color: inherit; display: block; }
 .release-item { display: flex; gap: 8px; background: rgba(255,255,255,0.3); padding: 8px; border: 1px solid #000; }
 .release-cover { width: 65px; height: 65px; border: 2px solid #000; }
 .cover-green { background: #7fb881; } .cover-blue { background: #5a7a9a; }
@@ -131,23 +124,39 @@ body::before {
 .mailing-input input { flex: 1; padding: 10px; border: 2px solid #000; font-family: 'VT323', monospace; outline: none; }
 .mailing-input button { padding: 10px; border: 2px solid #000; background: #000; color: #a8c5b5; cursor: pointer; }
 
-/* --- FOOTER --- */
+/* --- FOOTER & UNIFIED STATS --- */
 .footer { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; }
 .footer-logo { font-size: 60px; color: #8a9a8a; font-family: 'VT323', monospace; opacity: 0.5; }
 .info-bar { background: #c9ba9b; padding: 6px 15px; font-size: 10px; font-weight: bold; border: 1px solid #000; }
 .progress-bar { width: 120px; height: 20px; background: #6a7a6a; border: 2px solid #000; display: flex; }
 .progress-segment { flex: 1; background: #a8c5b5; border-right: 1px solid #000; }
-.footer-link { background: #6a7a5a; padding: 8px 12px; font-size: 9px; border: 1px solid #000; }
 
-/* --- MOBILE REFINEMENTS (The "Understand first" Part) --- */
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+}
+
+.footer-link { 
+    background: #6a7a5a; 
+    padding: 8px 12px; 
+    font-size: 9px; 
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-link-label {
+    font-size: 7px;
+    color: #000;
+    opacity: 0.6;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+/* --- MOBILE REFINEMENTS --- */
 @media (max-width: 850px) {
-    /* 1. Stack the header and shrink the logo into a square/block style */
-    .header {
-        flex-direction: column;
-        padding: 15px;
-        gap: 15px;
-    }
-
+    .header { flex-direction: column; padding: 15px; gap: 15px; }
     .logo {
         font-size: 80px; /* Smaller for mobile */
         letter-spacing: -2px;
@@ -159,94 +168,42 @@ body::before {
         line-height: 1;
     }
 
-    /* 2. Reorder content: Right Column (Music) FIRST, then Left Column (Links) */
     .main-content {
         display: flex;
-        flex-direction: column-reverse; /* Flips the grid order */
+        flex-direction: column-reverse;
         padding: 10px;
     }
 
-    /* 3. Stats appear after the music and links */
-    .stats {
-        order: 3; 
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
+    .releases-grid { grid-template-columns: 1fr; }
 
-    .stat-item {
-        flex: 1;
-        min-width: 30%;
-    }
-
-    .releases-grid {
-        grid-template-columns: 1fr; /* Single column for easier tapping on mobile */
-    }
-
-    .footer {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-
-    .footer-links {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        width: 100%;
-        gap: 5px;
-    }
+    .footer { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-links { grid-template-columns: repeat(2, 1fr); width: 100%; }
+    .footer-logo { font-size: 40px; }
 }
-/* Add these refinements to your existing CSS file */
-
-.release-link {
+.footer-links a.footer-link {
     text-decoration: none;
-    color: inherit;
-    display: block;
+    color: #000;
 }
 
-/* Fix for the stats layout */
-.stats {
-    display: flex;
-    gap: 10px;
+.footer-links a.footer-link:hover {
+    background: #a8c5b5; /* Highlighting the box on hover */
+    color: #000;
 }
-
-/* Mobile Overrides */
 @media (max-width: 850px) {
-    .logo {
-        font-size: 80px;
-        letter-spacing: -4px;
-        transform: scaleY(1.1);
-        margin-bottom: 10px;
+    /* ... your existing mobile code ... */
+
+    .now-playing-section {
+        margin: 5px;      /* Reduced from 10px */
+        padding: 5px;     /* Reduced from 10px */
     }
 
-    .main-content {
-        display: flex;
-        flex-direction: column-reverse; /* Shows music player first on mobile */
-        gap: 20px;
+    .now-playing-track {
+        padding: 5px;     /* Reduced from 10px to shrink height */
+        font-size: 14px;  /* Smaller font to save space */
     }
 
-    .stats {
-        width: 100%;
-        justify-content: center;
+    .btn {
+        padding: 4px 12px; /* Slimmer buttons */
+        font-size: 14px;
     }
-
-    .stat-item {
-        flex: 1;
-    }
-
-    .releases-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Pulse animation for the player */
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.5; }
-    100% { opacity: 1; }
-}
-
-.playing {
-    animation: pulse 2s infinite ease-in-out;
-    border-left: 4px solid #fff;
 }
