@@ -7,13 +7,152 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <style>
-        .release-cover img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        /* --- CORE SYSTEM DEFAULTS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: crosshair;
+        }
+
+        body {
+            background: #3a3a3a;
+            font-family: Verdana, Arial, sans-serif;
+            color: #000;
+            position: relative;
+            overflow-x: hidden;
+            -webkit-font-smoothing: none;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- CRT SCANLINE EFFECT --- */
+        body::before {
+            content: " ";
             display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            z-index: 999;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            background: #4a4a4a;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- HEADER --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 25px;
+            background: #4a4a4a;
+        }
+
+        .logo {
+            font-size: 180px;
+            font-weight: bold;
+            color: #a8c5b5;
+            letter-spacing: -12px;
+            font-family: 'VT323', monospace;
+            line-height: 0.75;
+            transform: scaleY(1.3);
+            animation: flicker 0.3s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.97; }
+            100% { opacity: 1; }
+        }
+
+        /* --- MAIN CONTENT LAYOUT --- */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 20px;
+            padding: 10px 25px;
+            flex: 1;
+        }
+
+        .section-group { background: #a8c5b5; border: 2px solid #000; margin-bottom: 15px; }
+        .section-title { background: #000; color: #a8c5b5; padding: 6px 10px; font-size: 12px; font-family: 'VT323', monospace; }
+
+        .news-item {
+            padding: 8px 10px; margin: 4px; font-size: 12px; font-weight: bold;
+            display: flex; justify-content: space-between; text-decoration: none; color: #000;
+            transition: all 0.1s;
+        }
+        .news-item:hover { background: #000 !important; color: #fff !important; transform: translateX(8px); }
+
+        /* COLORS */
+        .beige { background: #c9ba9b; } .orange { background: #d47d4a; }
+        .green { background: #7fb881; } .purple { background: #b967b9; }
+        .yellow { background: #c9b349; } .gray { background: #8a8a8a; }
+
+        /* --- RELEASES & PLAYER --- */
+        .releases-section { background: #a8c5b5; border: 2px solid #000; padding-bottom: 10px; }
+        .releases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; }
+        .release-link { text-decoration: none; color: inherit; display: block; }
+        .release-item { display: flex; gap: 8px; background: rgba(255,255,255,0.3); padding: 8px; border: 1px solid #000; }
+        .release-cover { width: 65px; height: 65px; border: 2px solid #000; }
+        .release-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .cover-green { background: #7fb881; } .cover-blue { background: #5a7a9a; }
+        .cover-orange { background: #d47d4a; } .cover-yellow { background: #c9b349; }
+        .release-info { font-size: 10px; font-weight: bold; text-transform: uppercase; }
+
+        .now-playing-section { background: #6a8a7a; padding: 10px; margin: 10px; border: 2px solid #000; }
+        
+        .mailing-section { background: #a8c5b5; border: 2px solid #000; margin-top: 10px; }
+        .mailing-input { display: flex; gap: 5px; padding: 10px; }
+        .mailing-input input { flex: 1; padding: 10px; border: 2px solid #000; font-family: 'VT323', monospace; outline: none; }
+        .mailing-input button { padding: 10px; border: 2px solid #000; background: #000; color: #a8c5b5; cursor: pointer; }
+
+        /* --- FOOTER --- */
+        .footer { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; }
+        .footer-logo { font-size: 60px; color: #8a9a8a; font-family: 'VT323', monospace; opacity: 0.5; }
+        .info-bar { background: #c9ba9b; padding: 6px 15px; font-size: 10px; font-weight: bold; border: 1px solid #000; }
+        .progress-bar { width: 120px; height: 20px; background: #6a7a6a; border: 2px solid #000; display: flex; }
+        .progress-segment { flex: 1; background: #a8c5b5; border-right: 1px solid #000; }
+
+        .footer-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+        .footer-link { background: #6a7a5a; padding: 8px 12px; font-size: 9px; border: 1px solid #000; display: flex; flex-direction: column; text-decoration: none; color: #000; }
+        .footer-link:hover { background: #a8c5b5; color: #000; }
+        .footer-link-label { font-size: 7px; color: #000; opacity: 0.6; text-transform: uppercase; margin-bottom: 2px; }
+
+        /* --- MOBILE REFINEMENTS --- */
+        @media (max-width: 850px) {
+            .header { flex-direction: column; padding: 15px; gap: 15px; }
+            .logo {
+                font-size: 80px;
+                letter-spacing: -2px;
+                transform: scaleY(1);
+                text-align: center;
+                width: 100%;
+                border: 4px solid #a8c5b5;
+                padding: 10px;
+                line-height: 1;
+            }
+
+            .main-content {
+                display: flex;
+                flex-direction: column-reverse; /* Releases show first, DB column second */
+                padding: 10px;
+            }
+
+            .releases-grid { grid-template-columns: 1fr; }
+
+            .now-playing-section { margin: 5px; padding: 5px; }
+
+            .footer { flex-direction: column; gap: 20px; text-align: center; }
+            .footer-links { grid-template-columns: repeat(2, 1fr); width: 100%; }
+            .footer-logo { font-size: 40px; }
         }
     </style>
 </head>
@@ -52,6 +191,16 @@
                         <div class="news-item gray">BIO</div>
                         <div class="news-item gray">ORIGIN: DHAKA, BANGLADESH</div>
                         <div class="news-item gray">CONTACT: ROYGBIV.WAV@GMAIL.COM</div>
+                    </div>
+                </div>
+
+                <div class="mailing-section">
+                    <div class="section-title">JOIN THE MAILING LIST. SUPPLY E-MAIL:</div>
+                    <div class="mailing-content">
+                        <form action="https://formspree.io/f/xqekrklz" method="POST" class="mailing-input">
+                            <input type="email" name="email" placeholder="► ENTER EMAIL" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -93,22 +242,11 @@
                     </div>
                     
                     <div class="now-playing-section">
-                        
                         <div class="player-container">
                             <iframe style="border: 0; width: 100%; height: 120px;" src="https://bandcamp.com/EmbeddedPlayer/track=1135268436/size=large/bgcol=333333/linkcol=4ec5ec/tracklist=false/artwork=small/transparent=true/" seamless>
                                 <a href="https://bandroygbiv.bandcamp.com/track/born-living">Born, Living by Roygbiv</a>
                             </iframe>
                         </div>
-                    </div>
-                </div>
-
-                <div class="mailing-section">
-                    <div class="section-title">JOIN THE MAILING LIST. SUPPLY E-MAIL:</div>
-                    <div class="mailing-content">
-                        <form action="https://formspree.io/f/xqekrklz" method="POST" class="mailing-input">
-                            <input type="email" name="email" placeholder="► ENTER EMAIL" required>
-                            <button type="submit">Subscribe</button>
-                        </form>
                     </div>
                 </div>
             </div>
