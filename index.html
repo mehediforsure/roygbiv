@@ -116,7 +116,23 @@
 
         /* --- FOOTER --- */
         .footer { display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; }
-        .footer-logo { font-size: 60px; color: #8a9a8a; font-family: 'VT323', monospace; opacity: 0.5; }
+        
+        /* Updated Footer Logo style for Phonetic/Bengali symbols */
+        .footer-logo { 
+            font-size: 28px; 
+            color: #8a9a8a; 
+            font-family: Arial, sans-serif; 
+            opacity: 0.6; 
+            line-height: 1.1;
+        }
+        .pronunciation-guide {
+            font-size: 16px;
+            display: block;
+            margin-top: 4px;
+            letter-spacing: 0px;
+            color: #7a8a7a;
+        }
+
         .info-bar { background: #c9ba9b; padding: 6px 15px; font-size: 10px; font-weight: bold; border: 1px solid #000; }
         .progress-bar { width: 120px; height: 20px; background: #6a7a6a; border: 2px solid #000; display: flex; }
         .progress-segment { flex: 1; background: #a8c5b5; border-right: 1px solid #000; }
@@ -142,7 +158,7 @@
 
             .main-content {
                 display: flex;
-                flex-direction: column-reverse; /* Releases show first, DB column second */
+                flex-direction: column-reverse;
                 padding: 10px;
             }
 
@@ -152,7 +168,7 @@
 
             .footer { flex-direction: column; gap: 20px; text-align: center; }
             .footer-links { grid-template-columns: repeat(2, 1fr); width: 100%; }
-            .footer-logo { font-size: 40px; }
+            .footer-logo { font-size: 26px; }
         }
     </style>
 </head>
@@ -189,8 +205,8 @@
                     <div class="section-title">DB-03 // SYSTEM LOGS - ABOUT</div>
                     <div class="news-list">
                         <div class="news-item gray">BIO</div>
-                        <div class="news-item gray">Origin: DHAKA, BANGLADESH</div>
-                        <div class="news-item gray">Contact: roygbiv.wav@gmail.com</div>
+                        <div class="news-item gray">ORIGIN: DHAKA, BANGLADESH</div>
+                        <div class="news-item gray">CONTACT: ROYGBIV.WAV@GMAIL.COM</div>
                     </div>
                 </div>
 
@@ -255,33 +271,33 @@
         <div class="footer">
             <div class="footer-logo">
                 rɔɪɡˈbɪv
-                <span class="pronunciation-guide">রয়গ্‌বিভ</span></div>
+                <span class="pronunciation-guide">রয়গ্‌বিভ</span>
+            </div>
+
             <div class="footer-center">
-                <div class="info-bar">Last Updated: 2025.12.22 ► </div>
+                <div class="info-bar">LAST UPDATED: 2025.12.22 ► </div>
                 <div class="progress-bar">
                     <div class="progress-segment"></div><div class="progress-segment"></div><div class="progress-segment"></div><div class="progress-segment"></div><div class="progress-segment"></div><div class="progress-segment"></div><div class="progress-segment"></div><div class="progress-segment"></div>
                 </div>
             </div>
             <div class="footer-links">
                 <a href="https://www.musicradar.com/news/short-history-of-electronic-music" target="_blank" class="footer-link">
-                    <div class="footer-link-label">Discovery</div><div>► history/origin of electronic music</div>
+                    <div class="footer-link-label">DISCOVER</div><div>► Electronic Music Origin</div>
                 </a>
                 <a href="https://mixmag.net/feature/deep-dive-south-asian-music-pakistan-india-sri-lanka-bangladesh-nepal" target="_blank" class="footer-link">
-                    <div class="footer-link-label">Discovery</div><div>► South Asian Scene</div>
+                    <div class="footer-link-label">Discover</div><div>► South Asian Scene</div>
                 </a>
                 <a href="https://open.spotify.com/playlist/5NNxpSzIqCNM3dNk7l8Z3h?si=bf4fdefeda184f46" target="_blank" class="footer-link">
                     <div class="footer-link-label">Explore</div><div>► Music recommendation</div>
                 </a>
                 <a href="https://learningsynths.ableton.com/" target="_blank" class="footer-link">
-                    <div class="footer-link-label">Learn</div><div>► Learn Synthesizers</div>
+                    <div class="footer-link-label">LEARN</div><div>► Learn Synthesizers</div>
                 </a>
-                <a href="https://rateyourmusic.com/genre/electronic/" target="_blank" class="footer-link">
-                    <div class="footer-link-label">Discovery</div><div>► RYM </div>
+                <a href="https://bandcamp.com/tag/experimental" target="_blank" class="footer-link">
+                    <div class="footer-link-label">FUTURE Music</div><div>► BEYOND GENRE</div>
                 </a>
             </div>
         </div>
     </div>
 </body>
 </html>
-
-
