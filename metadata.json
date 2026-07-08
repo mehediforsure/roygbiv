@@ -1,0 +1,6 @@
+{
+  "name": "roygbiv",
+  "description": "Bangladesh's independent electronic music archive and interactive spectrum discovery engine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
